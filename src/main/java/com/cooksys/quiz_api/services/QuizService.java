@@ -9,11 +9,22 @@ import com.cooksys.quiz_api.entities.Quiz;
 
 public interface QuizService {
 
+  // Get All Quizzes
   List<QuizResponseDto> getAllQuizzes();
 
+  // Get Quiz By ID
   QuizResponseDto getQuizById(Long quizID);
 
+  // Get Question by ID
+  QuizResponseDto getQuestionsById(Long quizID);
+
+
+  /*
   QuizResponseDto deleteQuizById(Long quizID);
 
-  QuestionResponseDto getRandomQuestion(Long id);
+  QuizResponseDto getRandomQuestion(Long quizID);
+
+
+
+   */
 }

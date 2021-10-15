@@ -39,6 +39,17 @@ public class QuizController {
     return quizService.getQuizById(quizID);
   }
 
+  // Get Quiz: Gets the specified quiz questions from the collection
+  @GetMapping("/{id}/{id}")
+  public QuizResponseDto getQuestionsById(@PathVariable("id") Long quizID) {
+
+    return quizService.getQuestionsById(quizID);
+    //return null;
+  }
+
+
+/*
+
 
   // Delete Quiz: Deletes the specified quiz from the collection
   @DeleteMapping("/{id}")
@@ -57,7 +68,8 @@ public class QuizController {
   // Get Random Question
   @GetMapping("/{id}/random")
   public QuestionResponseDto getRandomQuestion(@PathVariable("id") Long id) {
-    return quizService.getRandomQuestion(id);
+    //return quizService.getRandomQuestion(id);
+    return null;
   }
 
 
@@ -74,5 +86,5 @@ public class QuizController {
     return null;
   }
 
-
+*/
 }

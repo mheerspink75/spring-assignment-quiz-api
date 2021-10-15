@@ -34,6 +34,15 @@ public class QuizServiceImpl implements QuizService {
   }
 
   @Override
+  // Get Quiz Questions By ID
+  public QuizResponseDto getQuestionsById(Long quizID) {
+    return quizMapper.entityToDto(quizRepository.getById(quizID));
+  }
+
+
+  /*
+
+  @Override
   // Delete Quiz By ID - Need to implement
   public QuizResponseDto deleteQuizById(Long quizID) {
     //return quizMapper.entityToDto(quizRepository.getById(quizID));
@@ -47,5 +56,5 @@ public class QuizServiceImpl implements QuizService {
     // return quizMapper.entityToDto(quizRepository.getById(id));
     return null;
   }
-
+  */
 }
