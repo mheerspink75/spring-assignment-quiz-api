@@ -18,6 +18,8 @@ public interface QuizService {
   // Get Question by ID
   QuestionResponseDto getRandomQuestion(Long quizID);
 
+  QuizResponseDto deleteQuizById(Long quizID);
+
 
   /*
   QuizResponseDto deleteQuizById(Long quizID);
