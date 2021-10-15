@@ -27,9 +27,21 @@ public class QuizController {
   
   // TODO: Implement the remaining 6 endpoints from the documentation.
 
+
+  // Post Quiz: Creates a quiz and adds it to the collection
+
+  // Delete Quiz
+
+  // Patch Quiz: Rename the specified quiz using the name given
+
+  // Get Random Question
   @GetMapping("/{id}/random")
   public QuestionResponseDto getRandomQuestion(@PathVariable("id") Long quizID) {
     return null;
   }
+
+  // Patch Quiz: Adds a question to the specified quiz
+
+  //Delete Deletes the specified question from the specified quiz
 
 }
