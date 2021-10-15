@@ -35,9 +35,10 @@ public class QuizController {
 
   // Get Quiz: Deletes the specified quiz from the collection
   @GetMapping("/{id}")
-  public QuizResponseDto getQuiz(@PathVariable("id") Long quizID){
-    return null;
+  public QuizResponseDto getQuizById(@PathVariable("id") Long quizID){
+    return quizService.getQuizById(quizID);
   }
+
 
   // Delete Quiz: Deletes the specified quiz from the collection
   @DeleteMapping("/{id}")
@@ -56,6 +57,7 @@ public class QuizController {
   // Get Random Question
   @GetMapping("/{id}/random")
   public QuestionResponseDto getRandomQuestion(@PathVariable("id") Long quizID) {
+    // return quizService.getRandomQuestion(quizId);
     return null;
   }
 
