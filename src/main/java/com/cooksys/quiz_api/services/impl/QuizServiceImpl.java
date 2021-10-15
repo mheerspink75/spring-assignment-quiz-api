@@ -1,10 +1,13 @@
 package com.cooksys.quiz_api.services.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.cooksys.quiz_api.dtos.QuestionResponseDto;
 import com.cooksys.quiz_api.dtos.QuizResponseDto;
+import com.cooksys.quiz_api.entities.Question;
 import com.cooksys.quiz_api.entities.Quiz;
+import com.cooksys.quiz_api.mappers.QuestionMapper;
 import com.cooksys.quiz_api.mappers.QuizMapper;
 import com.cooksys.quiz_api.repositories.QuizRepository;
 import com.cooksys.quiz_api.services.QuizService;
@@ -19,6 +22,7 @@ public class QuizServiceImpl implements QuizService {
 
   private final QuizRepository quizRepository;
   private final QuizMapper quizMapper;
+  private final QuestionMapper questionMapper;
 
 
   @Override
@@ -30,13 +34,16 @@ public class QuizServiceImpl implements QuizService {
   @Override
   // Get Quiz By ID
   public QuizResponseDto getQuizById(Long quizID) {
-    return quizMapper.entityToDto(quizRepository.getById(quizID));
+    Quiz quiz = quizRepository.getById(quizID);
+    return quizMapper.entityToDto(quiz);
   }
 
   @Override
-  // Get Quiz Questions By ID
-  public QuizResponseDto getQuestionsById(Long quizID) {
-    return quizMapper.entityToDto(quizRepository.getById(quizID));
+  // Get Random Question
+  public QuestionResponseDto getRandomQuestion(Long quizID) {
+    Quiz quiz = quizRepository.getById(quizID);
+
+    return null;
   }
 
 

@@ -16,15 +16,11 @@ public interface QuizService {
   QuizResponseDto getQuizById(Long quizID);
 
   // Get Question by ID
-  QuizResponseDto getQuestionsById(Long quizID);
+  QuestionResponseDto getRandomQuestion(Long quizID);
 
 
   /*
   QuizResponseDto deleteQuizById(Long quizID);
-
-  QuizResponseDto getRandomQuestion(Long quizID);
-
-
 
    */
 }
