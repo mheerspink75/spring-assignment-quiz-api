@@ -3,16 +3,12 @@ package com.cooksys.quiz_api.dtos;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @NoArgsConstructor
 @Data
-public class QuestionRequestDto {
+public class AnswerRequestDto {
 
     private Long id;
 
     private String text;
-
-    private List<AnswerResponseDto> answers;
 
 }
