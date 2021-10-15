@@ -33,6 +33,12 @@ public class QuizController {
   }
 
 
+  // Get Quiz: Deletes the specified quiz from the collection
+  @GetMapping("/{id}")
+  public QuizResponseDto getQuiz(@PathVariable("id") Long quizID){
+    return null;
+  }
+
   // Delete Quiz: Deletes the specified quiz from the collection
   @DeleteMapping("/{id}")
   public QuizResponseDto deleteQuiz(@PathVariable("id") Long quizID){
