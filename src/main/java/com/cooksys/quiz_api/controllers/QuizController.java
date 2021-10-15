@@ -32,9 +32,20 @@ public class QuizController {
     return null;
   }
 
-  // Delete Quiz
+
+  // Delete Quiz: Deletes the specified quiz from the collection
+  @DeleteMapping("/{id}")
+  public QuizResponseDto deleteQuiz(@PathVariable("id") Long quizID){
+    return null;
+  }
+
 
   // Patch Quiz: Rename the specified quiz using the name given
+  @PatchMapping("/{id}/rename/{newName}")
+  public QuizResponseDto renameQuiz(@PathVariable("id") Long quizID) {
+    return null;
+  }
+
 
   // Get Random Question
   @GetMapping("/{id}/random")
@@ -42,12 +53,19 @@ public class QuizController {
     return null;
   }
 
+
   // Patch Quiz: Adds a question to the specified quiz
   @PatchMapping("/{id}/add")
   public QuizResponseDto addQuestionToQuiz(@PathVariable long id, @RequestBody QuestionRequestDto questionRequestDto) {
     return null;
   }
 
-  //Delete Deletes the specified question from the specified quiz
+
+  //Delete: Deletes the specified question from the specified quiz
+  @DeleteMapping("/{id}/delete/{questionID}")
+  public QuizResponseDto deleteQuestion(@PathVariable long id, @RequestBody QuestionRequestDto questionRequestDto) {
+    return null;
+  }
+
 
 }
