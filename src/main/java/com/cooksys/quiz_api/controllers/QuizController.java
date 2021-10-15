@@ -2,14 +2,12 @@ package com.cooksys.quiz_api.controllers;
 
 import java.util.List;
 
+import com.cooksys.quiz_api.dtos.QuestionRequestDto;
 import com.cooksys.quiz_api.dtos.QuestionResponseDto;
 import com.cooksys.quiz_api.dtos.QuizResponseDto;
 import com.cooksys.quiz_api.services.QuizService;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import lombok.RequiredArgsConstructor;
 
@@ -41,6 +39,10 @@ public class QuizController {
   }
 
   // Patch Quiz: Adds a question to the specified quiz
+  @PatchMapping("/{id}/add")
+  public QuizResponseDto addQuestionToQuiz(@PathVariable long id, @RequestBody QuestionRequestDto questionRequestDto) {
+    return null;
+  }
 
   //Delete Deletes the specified question from the specified quiz
 
