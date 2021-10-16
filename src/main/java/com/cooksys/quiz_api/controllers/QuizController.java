@@ -41,7 +41,7 @@ public class QuizController {
 
   // Get Random Question: Gets random quiz question by ID - Working
   @GetMapping("{id}/random")
-  public QuestionResponseDto getRandomQuestion(@PathVariable("id") Long quizID) {
+  public  ResponseEntity<QuestionResponseDto> getRandomQuestion(@PathVariable("id") Long quizID) {
     return quizService.getRandomQuestion(quizID);
   }
 

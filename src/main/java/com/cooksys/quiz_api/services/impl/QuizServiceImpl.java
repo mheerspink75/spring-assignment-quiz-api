@@ -66,14 +66,16 @@ public class QuizServiceImpl implements QuizService {
 
   @Override
   // Get Random Question - Completed
-  public QuestionResponseDto getRandomQuestion(Long quizID) {
-    Quiz quiz = quizRepository.getById(quizID);
-    if (quiz != null) {
-      Random random = new Random();
-      int randomQuestion = random.nextInt(quiz.getQuestions().size());
-      return questionMapper.entityToDto(quiz.getQuestions().get(randomQuestion));
+  public ResponseEntity<QuestionResponseDto> getRandomQuestion(Long quizID) {
+    //Quiz quiz = quizRepository.getById(quizID);
+    Optional<Quiz> optionalQuiz = quizRepository.findById(quizID);
+    if (optionalQuiz.isEmpty()) {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-    return null;
+    Quiz quiz = optionalQuiz.get();
+    Random random = new Random();
+    int randomQuestion = random.nextInt(quiz.getQuestions().size());
+    return new ResponseEntity<>(questionMapper.entityToDto(quiz.getQuestions().get(randomQuestion)), HttpStatus.OK);
   }
 
   @Override
