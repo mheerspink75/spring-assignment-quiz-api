@@ -54,7 +54,6 @@ public class QuizServiceImpl implements QuizService {
   // Delete Quiz By ID - Completed
   public QuizResponseDto deleteQuizById(Long quizID) {
     Optional<Quiz> quizResponse = quizRepository.findById(quizID);
-
     if (quizResponse.isPresent()) {
       Quiz quiz = quizResponse.get();
       for (Question question : quiz.getQuestions()) {
@@ -67,6 +66,18 @@ public class QuizServiceImpl implements QuizService {
     return null;
   }
 
+  @Override
+  // Delete Quiz Question by ID - Completed
+  public QuestionResponseDto deleteQuestion(Long quizID, Long questionID) {
+    Optional<Question> questionResponse = questionRepository.findById(questionID);
+    if (questionResponse.isPresent()) {
+      Question question = questionResponse.get();
+      answerRepository.deleteAll(question.getAnswers());
+      questionRepository.delete(question);
+      return questionMapper.entityToDto(question);
+    }
+    return null;
+  }
 
   @Override
   // Post Create new Quiz - Completed

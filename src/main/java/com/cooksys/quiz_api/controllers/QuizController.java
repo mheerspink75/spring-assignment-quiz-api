@@ -57,8 +57,8 @@ public class QuizController {
 
   //Delete: Deletes the specified question from the specified quiz
   @DeleteMapping("/{id}/delete/{questionID}")
-  public QuizResponseDto deleteQuestion(@PathVariable long id, @RequestBody QuestionRequestDto questionRequestDto) {
-    return null;
+  public QuestionResponseDto deleteQuestion(@PathVariable("id") Long quizID, @PathVariable("questionID") Long questionID ) {
+    return quizService.deleteQuestion(quizID, questionID);
   }
 
 
