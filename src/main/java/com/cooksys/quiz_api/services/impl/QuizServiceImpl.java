@@ -120,21 +120,22 @@ public class QuizServiceImpl implements QuizService {
 
   @Override
   // Patch Add Question to Quiz - Completed
-  public QuizResponseDto addQuestionToQuiz(Long quizID, Question question) {
-    Optional<Quiz> quizResponse = quizRepository.findById(quizID);
-    if (quizResponse.isPresent()) {
-      Quiz quiz = quizResponse.get();
+  public ResponseEntity<QuizResponseDto> addQuestionToQuiz(Long quizID, Question question) {
+    Optional<Quiz> optionalQuiz = quizRepository.findById(quizID);
+    if (optionalQuiz.isEmpty()) {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+      Quiz quiz = optionalQuiz.get();
       question.setQuiz(quiz);
       quiz.getQuestions().add(question);
+
       for (Answer answer : question.getAnswers()) {
         answer.setQuestion(question);
       }
       questionRepository.save(question);
       answerRepository.saveAll(question.getAnswers());
       quizRepository.save(quiz);
-      return quizMapper.entityToDto(quiz);
-    }
-    return null;
+      return new ResponseEntity<>(quizMapper.entityToDto(quiz), HttpStatus.OK);
   }
 
 }

@@ -65,7 +65,7 @@ public class QuizController {
 
   // Patch Quiz: Adds a question to the specified quiz - Working
   @PatchMapping("/{id}/add")
-  public QuizResponseDto addQuestionToQuiz(@PathVariable("id") Long quizID, @RequestBody Question question) {
+  public ResponseEntity<QuizResponseDto> addQuestionToQuiz(@PathVariable("id") Long quizID, @RequestBody Question question) {
     return quizService.addQuestionToQuiz(quizID, question);
   }
 
