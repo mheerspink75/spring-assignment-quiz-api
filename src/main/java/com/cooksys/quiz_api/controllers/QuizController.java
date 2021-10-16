@@ -2,7 +2,6 @@ package com.cooksys.quiz_api.controllers;
 
 import java.util.List;
 
-import com.cooksys.quiz_api.dtos.QuestionRequestDto;
 import com.cooksys.quiz_api.dtos.QuestionResponseDto;
 import com.cooksys.quiz_api.dtos.QuizResponseDto;
 import com.cooksys.quiz_api.entities.Question;
@@ -18,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 public class QuizController {
 
   private final QuizService quizService;
+
 
   @GetMapping
   public List<QuizResponseDto> getAllQuizzes() {
@@ -62,7 +62,7 @@ public class QuizController {
     return quizService.renameQuiz(quizID, newName);
   }
 
-  // Patch Quiz: Adds a question to the specified quiz - Need to Implement
+  // Patch Quiz: Adds a question to the specified quiz - Working
   @PatchMapping("/{id}/add")
   public QuizResponseDto addQuestionToQuiz(@PathVariable("id") Long quizID, @RequestBody Question question) {
     return quizService.addQuestionToQuiz(quizID, question);

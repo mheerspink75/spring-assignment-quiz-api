@@ -24,5 +24,4 @@ public class Quiz {
   @OneToMany(mappedBy = "quiz")
   private List<Question> questions;
 
-
 }

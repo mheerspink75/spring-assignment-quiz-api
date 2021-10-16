@@ -37,8 +37,6 @@ public class QuizServiceImpl implements QuizService {
     return quizMapper.entitiesToDtos(quizRepository.findAll());
   }
 
-
-
   @Override
   // Post Create new Quiz - Completed
   public QuizResponseDto createQuiz(QuizResponseDto quiz) {
@@ -116,7 +114,7 @@ public class QuizServiceImpl implements QuizService {
   }
 
   @Override
-  // Patch Add Question to Quiz - Need to Implement
+  // Patch Add Question to Quiz - Completed
   public QuizResponseDto addQuestionToQuiz(Long quizID, Question question) {
     Optional<Quiz> quizResponse = quizRepository.findById(quizID);
     if (quizResponse.isPresent()) {
