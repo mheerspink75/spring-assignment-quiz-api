@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.cooksys.quiz_api.dtos.QuestionResponseDto;
 import com.cooksys.quiz_api.dtos.QuizResponseDto;
+import com.cooksys.quiz_api.entities.Question;
 import com.cooksys.quiz_api.entities.Quiz;
 
 public interface QuizService {
@@ -27,18 +28,10 @@ public interface QuizService {
   // Delete Quiz Question by ID
   QuestionResponseDto deleteQuestion(Long quizID, Long questionID);
 
+  // Patch Quiz Rename Quiz
+  QuizResponseDto renameQuiz(Long quizID, String newName);
 
+  // Patch Quiz Add Question
+  QuizResponseDto addQuestionToQuiz(Long quizID, Question question);
 
-  // Patch Rename Quiz
-  //QuizResponseDto renameQuiz(Long quizID, String newName);
-
-
-
-
-
-
-  /*
-
-
-   */
 }

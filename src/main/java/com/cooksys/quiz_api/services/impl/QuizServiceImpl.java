@@ -52,7 +52,6 @@ public class QuizServiceImpl implements QuizService {
       answerRepository.saveAllAndFlush(question.getAnswers());
     }
     return quizMapper.entityToDto(quizRepository.saveAndFlush(quizMapper.dtoToEntity(quiz)));
-
   }
 
   @Override
@@ -99,6 +98,38 @@ public class QuizServiceImpl implements QuizService {
       answerRepository.deleteAll(question.getAnswers());
       questionRepository.delete(question);
       return questionMapper.entityToDto(question);
+    }
+    return null;
+  }
+
+  @Override
+  // Patch Rename Quiz - Completed
+  public QuizResponseDto renameQuiz(Long quizID, String newName) {
+    Optional<Quiz> quizResponse = quizRepository.findById(quizID);
+    if (quizResponse.isPresent()) {
+      Quiz quiz = quizResponse.get();
+      quiz.setName(newName);
+      quizRepository.save(quiz);
+      return quizMapper.entityToDto(quiz);
+    }
+    return null;
+  }
+
+  @Override
+  // Patch Add Question to Quiz - Need to Implement
+  public QuizResponseDto addQuestionToQuiz(Long quizID, Question question) {
+    Optional<Quiz> quizResponse = quizRepository.findById(quizID);
+    if (quizResponse.isPresent()) {
+      Quiz quiz = quizResponse.get();
+      question.setQuiz(quiz);
+      quiz.getQuestions().add(question);
+      for (Answer answer : question.getAnswers()) {
+        answer.setQuestion(question);
+      }
+      questionRepository.save(question);
+      answerRepository.saveAll(question.getAnswers());
+      quizRepository.save(quiz);
+      return quizMapper.entityToDto(quiz);
     }
     return null;
   }

@@ -5,6 +5,7 @@ import java.util.List;
 import com.cooksys.quiz_api.dtos.QuestionRequestDto;
 import com.cooksys.quiz_api.dtos.QuestionResponseDto;
 import com.cooksys.quiz_api.dtos.QuizResponseDto;
+import com.cooksys.quiz_api.entities.Question;
 import com.cooksys.quiz_api.services.QuizService;
 
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +30,6 @@ public class QuizController {
   @PostMapping
   public QuizResponseDto createQuiz(@RequestBody QuizResponseDto quiz) {
     return quizService.createQuiz(quiz);
-    //return null;
   }
 
   // Get Quiz: Gets the specified quiz from the collection - Working
@@ -38,13 +38,11 @@ public class QuizController {
     return quizService.getQuizById(quizID);
   }
 
-
   // Get Random Question: Gets random quiz question by ID - Working
   @GetMapping("{id}/random")
   public QuestionResponseDto getRandomQuestion(@PathVariable("id") Long quizID) {
     return quizService.getRandomQuestion(quizID);
   }
-
 
   // Delete Quiz: Deletes the specified quiz from the collection - Working
   @DeleteMapping("/{id}")
@@ -52,30 +50,22 @@ public class QuizController {
     return quizService.deleteQuizById(quizID);
   }
 
-
   //Delete: Deletes the specified question from the specified quiz - Working
   @DeleteMapping("/{id}/delete/{questionID}")
   public QuestionResponseDto deleteQuestion(@PathVariable("id") Long quizID, @PathVariable("questionID") Long questionID ) {
     return quizService.deleteQuestion(quizID, questionID);
   }
 
-
-  // Patch Quiz: Rename the specified quiz using the name given
+  // Patch Quiz: Rename the specified quiz using the name given - Working
   @PatchMapping("/{id}/rename/{newName}")
-  public QuizResponseDto renameQuiz(@PathVariable("id") Long quizID, String newName) {
-    //return quizService.renameQuiz(quizID, newName);
-    return null;
+  public QuizResponseDto renameQuiz(@PathVariable("id") Long quizID,@PathVariable("newName") String newName) {
+    return quizService.renameQuiz(quizID, newName);
   }
 
-
-  // Patch Quiz: Adds a question to the specified quiz
+  // Patch Quiz: Adds a question to the specified quiz - Need to Implement
   @PatchMapping("/{id}/add")
-  public QuizResponseDto addQuestionToQuiz(@PathVariable long id, @RequestBody QuestionRequestDto questionRequestDto) {
-    return null;
+  public QuizResponseDto addQuestionToQuiz(@PathVariable("id") Long quizID, @RequestBody Question question) {
+    return quizService.addQuestionToQuiz(quizID, question);
   }
 
-/*
-
-
-*/
 }
