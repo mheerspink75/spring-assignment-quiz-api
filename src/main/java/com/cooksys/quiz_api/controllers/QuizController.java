@@ -5,7 +5,6 @@ import java.util.List;
 import com.cooksys.quiz_api.dtos.QuestionRequestDto;
 import com.cooksys.quiz_api.dtos.QuestionResponseDto;
 import com.cooksys.quiz_api.dtos.QuizResponseDto;
-import com.cooksys.quiz_api.entities.Question;
 import com.cooksys.quiz_api.services.QuizService;
 
 import org.springframework.web.bind.annotation.*;
@@ -36,16 +35,15 @@ public class QuizController {
 
   // Get Quiz: Gets the specified quiz from the collection
   @GetMapping("/{id}")
-  public QuizResponseDto getQuizById(@PathVariable("id") Long quizID){
+  public QuizResponseDto getQuizById(@PathVariable("id") Long quizID) {
     return quizService.getQuizById(quizID);
   }
 
 
   // Get Random Question: Gets random quiz question
   @GetMapping("{id}/random")
-  public QuizResponseDto getRandomQuestion(@PathVariable("id") Long quizID ) {
-    //return quizService.getRandomQuestion(quizID);
-    return null;
+  public QuestionResponseDto getRandomQuestion(@PathVariable("id") Long quizID) {
+    return quizService.getRandomQuestion(quizID);
   }
 
 

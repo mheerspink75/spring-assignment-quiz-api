@@ -1,5 +1,6 @@
 package com.cooksys.quiz_api.services.impl;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,24 +33,23 @@ public class QuizServiceImpl implements QuizService {
   }
 
   @Override
-  // Get Quiz By ID
+  // Get Quiz By ID - Working
   public QuizResponseDto getQuizById(Long quizID) {
     Quiz quiz = quizRepository.getById(quizID);
     return quizMapper.entityToDto(quiz);
   }
 
   @Override
-  // Get Random Question
+  // Get Random Question - Need to Implement`
   public QuestionResponseDto getRandomQuestion(Long quizID) {
     Quiz quiz = quizRepository.getById(quizID);
-    return null;
+    return (QuestionResponseDto) quizMapper.entitiesToDtos((List<Quiz>) quiz);
   }
 
   @Override
   // Delete Quiz By ID - Need to implement
   public QuizResponseDto deleteQuizById(Long quizID) {
-    //quizRepository.deleteById(quizID);
-    //return (QuizResponseDto) getAllQuizzes();
+    quizRepository.deleteById(quizID);
     return null;
   }
 
