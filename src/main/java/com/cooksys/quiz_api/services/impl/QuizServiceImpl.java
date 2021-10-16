@@ -26,6 +26,7 @@ public class QuizServiceImpl implements QuizService {
 
   private final QuizRepository quizRepository;
   private final QuizMapper quizMapper;
+  private final QuestionMapper questionMapper;
   private final QuestionRepository questionRepository;
   private final AnswerRepository answerRepository;
 
@@ -43,23 +44,32 @@ public class QuizServiceImpl implements QuizService {
   }
 
   @Override
-  // Get Random Question - Need to Implement`
+  // Get Random Question - Need to Implement
   public QuestionResponseDto getRandomQuestion(Long quizID) {
     Quiz quiz = quizRepository.getById(quizID);
     return (QuestionResponseDto) quizMapper.entitiesToDtos((List<Quiz>) quiz);
   }
 
   @Override
-  // Delete Quiz By ID - Need to implement
+  // Delete Quiz By ID - Completed
   public QuizResponseDto deleteQuizById(Long quizID) {
-    Quiz quiz = quizRepository.getById(quizID);
-    quizRepository.deleteById(quizID);
-    return quizMapper.entityToDto(quiz);
+    Optional<Quiz> quizResponse = quizRepository.findById(quizID);
+
+    if (quizResponse.isPresent()) {
+      Quiz quiz = quizResponse.get();
+      for (Question question : quiz.getQuestions()) {
+        answerRepository.deleteAll(question.getAnswers());
+      }
+      questionRepository.deleteAll(quiz.getQuestions());
+      quizRepository.delete(quiz);
+      return quizMapper.entityToDto(quiz);
+    }
+    return null;
   }
 
 
   @Override
-  // Post Create new Quiz
+  // Post Create new Quiz - Completed
   public QuizResponseDto createQuiz(QuizResponseDto quiz) {
     Quiz q = quizRepository.saveAndFlush(quizMapper.dtoToEntity(quiz));
     for (Question question : q.getQuestions()) {
