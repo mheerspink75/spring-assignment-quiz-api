@@ -12,10 +12,13 @@ public interface QuizService {
   // Get All Quizzes
   List<QuizResponseDto> getAllQuizzes();
 
+  // Post Create Quiz
+  QuizResponseDto createQuiz(QuizResponseDto quiz);
+
   // Get Quiz By ID
   QuizResponseDto getQuizById(Long quizID);
 
-  // Get Random Question
+  // Get Random Question by ID
   QuestionResponseDto getRandomQuestion(Long quizID);
 
   // Delete Quiz by ID
@@ -24,8 +27,7 @@ public interface QuizService {
   // Delete Quiz Question by ID
   QuestionResponseDto deleteQuestion(Long quizID, Long questionID);
 
-  // Quiz Create Quiz
-  QuizResponseDto createQuiz(QuizResponseDto quiz);
+
 
   // Patch Rename Quiz
   //QuizResponseDto renameQuiz(Long quizID, String newName);

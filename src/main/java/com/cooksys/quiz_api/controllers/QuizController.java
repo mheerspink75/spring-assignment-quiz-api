@@ -25,14 +25,12 @@ public class QuizController {
   
   // TODO: Implement the remaining 6 endpoints from the documentation.
 
-
-  // Post Quiz: Creates a quiz and adds it to the collection
+  // Post Quiz: Creates a quiz and adds it to the collection - Working
   @PostMapping
   public QuizResponseDto createQuiz(@RequestBody QuizResponseDto quiz) {
     return quizService.createQuiz(quiz);
     //return null;
   }
-
 
   // Get Quiz: Gets the specified quiz from the collection - Working
   @GetMapping("/{id}")
@@ -41,21 +39,21 @@ public class QuizController {
   }
 
 
-  // Get Random Question: Gets random quiz question
+  // Get Random Question: Gets random quiz question by ID - Working
   @GetMapping("{id}/random")
   public QuestionResponseDto getRandomQuestion(@PathVariable("id") Long quizID) {
     return quizService.getRandomQuestion(quizID);
   }
 
 
-  // Delete Quiz: Deletes the specified quiz from the collection - Completed
+  // Delete Quiz: Deletes the specified quiz from the collection - Working
   @DeleteMapping("/{id}")
   public QuizResponseDto deleteQuizById(@PathVariable("id") Long quizID){
     return quizService.deleteQuizById(quizID);
   }
 
 
-  //Delete: Deletes the specified question from the specified quiz
+  //Delete: Deletes the specified question from the specified quiz - Working
   @DeleteMapping("/{id}/delete/{questionID}")
   public QuestionResponseDto deleteQuestion(@PathVariable("id") Long quizID, @PathVariable("questionID") Long questionID ) {
     return quizService.deleteQuestion(quizID, questionID);

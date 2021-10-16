@@ -3,6 +3,7 @@ package com.cooksys.quiz_api.services.impl;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 import com.cooksys.quiz_api.dtos.QuestionResponseDto;
 import com.cooksys.quiz_api.dtos.QuizResponseDto;
@@ -36,18 +37,41 @@ public class QuizServiceImpl implements QuizService {
     return quizMapper.entitiesToDtos(quizRepository.findAll());
   }
 
+
+
+  @Override
+  // Post Create new Quiz - Completed
+  public QuizResponseDto createQuiz(QuizResponseDto quiz) {
+    Quiz q = quizRepository.saveAndFlush(quizMapper.dtoToEntity(quiz));
+    for (Question question : q.getQuestions()) {
+      question.setQuiz(q);
+      questionRepository.saveAndFlush(question);
+      for (Answer a : question.getAnswers()) {
+        a.setQuestion(question);
+      }
+      answerRepository.saveAllAndFlush(question.getAnswers());
+    }
+    return quizMapper.entityToDto(quizRepository.saveAndFlush(quizMapper.dtoToEntity(quiz)));
+
+  }
+
   @Override
   // Get Quiz By ID - Working
   public QuizResponseDto getQuizById(Long quizID) {
     Quiz quiz = quizRepository.getById(quizID);
-    return quizMapper.entityToDto(quiz);
+      return quizMapper.entityToDto(quiz);
   }
 
   @Override
-  // Get Random Question - Need to Implement
+  // Get Random Question - Completed
   public QuestionResponseDto getRandomQuestion(Long quizID) {
     Quiz quiz = quizRepository.getById(quizID);
-    return (QuestionResponseDto) quizMapper.entitiesToDtos((List<Quiz>) quiz);
+    if (quiz != null) {
+      Random random = new Random();
+      int randomQuestion = random.nextInt(quiz.getQuestions().size());
+      return questionMapper.entityToDto(quiz.getQuestions().get(randomQuestion));
+    }
+    return null;
   }
 
   @Override
@@ -78,24 +102,5 @@ public class QuizServiceImpl implements QuizService {
     }
     return null;
   }
-
-  @Override
-  // Post Create new Quiz - Completed
-  public QuizResponseDto createQuiz(QuizResponseDto quiz) {
-    Quiz q = quizRepository.saveAndFlush(quizMapper.dtoToEntity(quiz));
-    for (Question question : q.getQuestions()) {
-      question.setQuiz(q);
-      questionRepository.saveAndFlush(question);
-      for (Answer a : question.getAnswers()) {
-        a.setQuestion(question);
-      }
-      answerRepository.saveAllAndFlush(question.getAnswers());
-    }
-    return quizMapper.entityToDto(quizRepository.saveAndFlush(quizMapper.dtoToEntity(quiz)));
-
-  }
-
-
-
 
 }
