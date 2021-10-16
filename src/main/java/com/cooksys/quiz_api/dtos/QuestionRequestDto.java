@@ -9,10 +9,8 @@ import java.util.List;
 @Data
 public class QuestionRequestDto {
 
-    private Long id;
-
     private String text;
 
-    private List<AnswerResponseDto> answers;
+    private List<AnswerRequestDto> answers;
 
 }

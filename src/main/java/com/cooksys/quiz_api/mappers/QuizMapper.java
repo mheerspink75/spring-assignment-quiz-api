@@ -12,6 +12,8 @@ public interface QuizMapper {
 
   QuizResponseDto entityToDto(Quiz entity);
 
+  Quiz dtoToEntity(QuizResponseDto dto);
+
   List<QuizResponseDto> entitiesToDtos(List<Quiz> entities);
 
 }

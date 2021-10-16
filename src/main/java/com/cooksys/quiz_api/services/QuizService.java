@@ -21,6 +21,9 @@ public interface QuizService {
   // Delete Quiz by ID
   QuizResponseDto deleteQuizById(Long quizID);
 
+  // Quiz Create Quiz
+  QuizResponseDto createQuiz(QuizResponseDto quiz);
+
   // Patch Rename Quiz
   //QuizResponseDto renameQuiz(Long quizID, String newName);
 
