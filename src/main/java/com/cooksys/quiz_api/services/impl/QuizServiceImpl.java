@@ -52,8 +52,9 @@ public class QuizServiceImpl implements QuizService {
   @Override
   // Delete Quiz By ID - Need to implement
   public QuizResponseDto deleteQuizById(Long quizID) {
+    Quiz quiz = quizRepository.getById(quizID);
     quizRepository.deleteById(quizID);
-    return null;
+    return quizMapper.entityToDto(quiz);
   }
 
 
