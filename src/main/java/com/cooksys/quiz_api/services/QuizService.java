@@ -30,7 +30,7 @@ public interface QuizService {
   ResponseEntity<QuestionResponseDto> deleteQuestion(Long quizID, Long questionID);
 
   // Patch Quiz Rename Quiz
-  QuizResponseDto renameQuiz(Long quizID, String newName);
+  ResponseEntity<QuizResponseDto> renameQuiz(Long quizID, String newName);
 
   // Patch Quiz Add Question
   QuizResponseDto addQuestionToQuiz(Long quizID, Question question);

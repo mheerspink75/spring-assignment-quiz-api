@@ -59,7 +59,7 @@ public class QuizController {
 
   // Patch Quiz: Rename the specified quiz using the name given - Working
   @PatchMapping("/{id}/rename/{newName}")
-  public QuizResponseDto renameQuiz(@PathVariable("id") Long quizID,@PathVariable("newName") String newName) {
+  public ResponseEntity<QuizResponseDto> renameQuiz(@PathVariable("id") Long quizID,@PathVariable("newName") String newName) {
     return quizService.renameQuiz(quizID, newName);
   }
 

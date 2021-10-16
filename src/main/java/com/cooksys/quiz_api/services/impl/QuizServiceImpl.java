@@ -107,15 +107,15 @@ public class QuizServiceImpl implements QuizService {
 
   @Override
   // Patch Rename Quiz - Completed
-  public QuizResponseDto renameQuiz(Long quizID, String newName) {
-    Optional<Quiz> quizResponse = quizRepository.findById(quizID);
-    if (quizResponse.isPresent()) {
-      Quiz quiz = quizResponse.get();
+  public ResponseEntity<QuizResponseDto> renameQuiz(Long quizID, String newName) {
+    Optional<Quiz> optionalQuiz = quizRepository.findById(quizID);
+    if (optionalQuiz.isEmpty()) {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+      Quiz quiz = optionalQuiz.get();
       quiz.setName(newName);
       quizRepository.save(quiz);
-      return quizMapper.entityToDto(quiz);
-    }
-    return null;
+      return new ResponseEntity<>(quizMapper.entityToDto(quiz), HttpStatus.OK);
   }
 
   @Override
