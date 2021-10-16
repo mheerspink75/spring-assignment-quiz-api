@@ -41,7 +41,7 @@ public class QuizServiceImpl implements QuizService {
 
   @Override
   // Post Create new Quiz - Completed
-  public QuizResponseDto createQuiz(QuizResponseDto quiz) {
+  public ResponseEntity<QuizResponseDto> createQuiz(QuizResponseDto quiz) {
     Quiz q = quizRepository.saveAndFlush(quizMapper.dtoToEntity(quiz));
     for (Question question : q.getQuestions()) {
       question.setQuiz(q);
@@ -51,7 +51,11 @@ public class QuizServiceImpl implements QuizService {
       }
       answerRepository.saveAllAndFlush(question.getAnswers());
     }
-    return quizMapper.entityToDto(quizRepository.saveAndFlush(quizMapper.dtoToEntity(quiz)));
+    quizRepository.saveAndFlush(quizMapper.dtoToEntity(quiz));
+    if (quiz.name == null) {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+    return new ResponseEntity<>(quizMapper.entityToDto(quizMapper.dtoToEntity(quiz)), HttpStatus.OK);
   }
 
   @Override
@@ -67,7 +71,6 @@ public class QuizServiceImpl implements QuizService {
   @Override
   // Get Random Question - Completed
   public ResponseEntity<QuestionResponseDto> getRandomQuestion(Long quizID) {
-    //Quiz quiz = quizRepository.getById(quizID);
     Optional<Quiz> optionalQuiz = quizRepository.findById(quizID);
     if (optionalQuiz.isEmpty()) {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);

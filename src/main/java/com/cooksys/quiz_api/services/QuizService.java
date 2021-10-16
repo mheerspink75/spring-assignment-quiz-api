@@ -15,7 +15,7 @@ public interface QuizService {
   List<QuizResponseDto> getAllQuizzes();
 
   // Post Create Quiz
-  QuizResponseDto createQuiz(QuizResponseDto quiz);
+  ResponseEntity<QuizResponseDto> createQuiz(QuizResponseDto quiz);
 
   // Get Quiz By ID
   ResponseEntity<QuizResponseDto> getQuizById(Long quizID);

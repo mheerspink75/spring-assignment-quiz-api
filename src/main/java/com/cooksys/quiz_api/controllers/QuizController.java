@@ -29,7 +29,7 @@ public class QuizController {
 
   // Post Quiz: Creates a quiz and adds it to the collection - Working
   @PostMapping
-  public QuizResponseDto createQuiz(@RequestBody QuizResponseDto quiz) {
+  public ResponseEntity<QuizResponseDto> createQuiz(@RequestBody QuizResponseDto quiz) {
     return quizService.createQuiz(quiz);
   }
 
