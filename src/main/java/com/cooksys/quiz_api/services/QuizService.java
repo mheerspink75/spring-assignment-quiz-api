@@ -24,7 +24,7 @@ public interface QuizService {
   QuestionResponseDto getRandomQuestion(Long quizID);
 
   // Delete Quiz by ID
-  QuizResponseDto deleteQuizById(Long quizID);
+  ResponseEntity<QuizResponseDto> deleteQuizById(Long quizID);
 
   // Delete Quiz Question by ID
   QuestionResponseDto deleteQuestion(Long quizID, Long questionID);

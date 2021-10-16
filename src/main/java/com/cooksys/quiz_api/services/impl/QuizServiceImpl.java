@@ -78,18 +78,18 @@ public class QuizServiceImpl implements QuizService {
 
   @Override
   // Delete Quiz By ID - Completed
-  public QuizResponseDto deleteQuizById(Long quizID) {
-    Optional<Quiz> quizResponse = quizRepository.findById(quizID);
-    if (quizResponse.isPresent()) {
-      Quiz quiz = quizResponse.get();
+  public ResponseEntity<QuizResponseDto> deleteQuizById(Long quizID) {
+    Optional<Quiz> optionalQuiz = quizRepository.findById(quizID);
+    if (optionalQuiz.isEmpty()) {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+      Quiz quiz = optionalQuiz.get();
       for (Question question : quiz.getQuestions()) {
         answerRepository.deleteAll(question.getAnswers());
       }
       questionRepository.deleteAll(quiz.getQuestions());
       quizRepository.delete(quiz);
-      return quizMapper.entityToDto(quiz);
-    }
-    return null;
+      return new ResponseEntity<>(quizMapper.entityToDto(quiz), HttpStatus.OK);
   }
 
   @Override

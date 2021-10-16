@@ -47,7 +47,7 @@ public class QuizController {
 
   // Delete Quiz: Deletes the specified quiz from the collection - Working
   @DeleteMapping("/{id}")
-  public QuizResponseDto deleteQuizById(@PathVariable("id") Long quizID){
+  public ResponseEntity<QuizResponseDto> deleteQuizById(@PathVariable("id") Long quizID){
     return quizService.deleteQuizById(quizID);
   }
 
