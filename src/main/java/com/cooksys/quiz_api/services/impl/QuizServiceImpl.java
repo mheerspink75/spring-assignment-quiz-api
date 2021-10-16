@@ -133,7 +133,6 @@ public class QuizServiceImpl implements QuizService {
       Quiz quiz = optionalQuiz.get();
       question.setQuiz(quiz);
       quiz.getQuestions().add(question);
-
       for (Answer answer : question.getAnswers()) {
         answer.setQuestion(question);
       }
