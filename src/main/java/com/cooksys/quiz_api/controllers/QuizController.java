@@ -7,6 +7,7 @@ import com.cooksys.quiz_api.dtos.QuizResponseDto;
 import com.cooksys.quiz_api.entities.Question;
 import com.cooksys.quiz_api.services.QuizService;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import lombok.RequiredArgsConstructor;
@@ -34,7 +35,7 @@ public class QuizController {
 
   // Get Quiz: Gets the specified quiz from the collection - Working
   @GetMapping("/{id}")
-  public QuizResponseDto getQuizById(@PathVariable("id") Long quizID) {
+  public ResponseEntity<QuizResponseDto> getQuizById(@PathVariable("id") Long quizID) {
     return quizService.getQuizById(quizID);
   }
 

@@ -17,6 +17,8 @@ import com.cooksys.quiz_api.repositories.QuizRepository;
 import com.cooksys.quiz_api.repositories.QuestionRepository;
 import com.cooksys.quiz_api.services.QuizService;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -54,9 +56,12 @@ public class QuizServiceImpl implements QuizService {
 
   @Override
   // Get Quiz By ID - Working
-  public QuizResponseDto getQuizById(Long quizID) {
-    Quiz quiz = quizRepository.getById(quizID);
-      return quizMapper.entityToDto(quiz);
+  public ResponseEntity<QuizResponseDto> getQuizById(Long quizID) {
+    Optional<Quiz> optionalQuiz = quizRepository.findById(quizID);
+    if (optionalQuiz.isEmpty()) {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+      return new ResponseEntity<>(quizMapper.entityToDto(optionalQuiz.get()), HttpStatus.OK);
   }
 
   @Override

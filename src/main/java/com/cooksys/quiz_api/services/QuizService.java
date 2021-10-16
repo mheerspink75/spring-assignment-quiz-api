@@ -7,6 +7,7 @@ import com.cooksys.quiz_api.dtos.QuestionResponseDto;
 import com.cooksys.quiz_api.dtos.QuizResponseDto;
 import com.cooksys.quiz_api.entities.Question;
 import com.cooksys.quiz_api.entities.Quiz;
+import org.springframework.http.ResponseEntity;
 
 public interface QuizService {
 
@@ -17,7 +18,7 @@ public interface QuizService {
   QuizResponseDto createQuiz(QuizResponseDto quiz);
 
   // Get Quiz By ID
-  QuizResponseDto getQuizById(Long quizID);
+  ResponseEntity<QuizResponseDto> getQuizById(Long quizID);
 
   // Get Random Question by ID
   QuestionResponseDto getRandomQuestion(Long quizID);
