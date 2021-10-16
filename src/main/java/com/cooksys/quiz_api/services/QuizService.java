@@ -27,7 +27,7 @@ public interface QuizService {
   ResponseEntity<QuizResponseDto> deleteQuizById(Long quizID);
 
   // Delete Quiz Question by ID
-  QuestionResponseDto deleteQuestion(Long quizID, Long questionID);
+  ResponseEntity<QuestionResponseDto> deleteQuestion(Long quizID, Long questionID);
 
   // Patch Quiz Rename Quiz
   QuizResponseDto renameQuiz(Long quizID, String newName);
