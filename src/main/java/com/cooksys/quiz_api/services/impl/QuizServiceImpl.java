@@ -58,7 +58,7 @@ public class QuizServiceImpl implements QuizService {
 
 
   @Override
-  // Post Create new Quiz - Need to implement
+  // Post Create new Quiz
   public QuizResponseDto createQuiz(QuizResponseDto quiz) {
     Quiz q = quizRepository.saveAndFlush(quizMapper.dtoToEntity(quiz));
     for (Question question : q.getQuestions()) {
@@ -69,8 +69,8 @@ public class QuizServiceImpl implements QuizService {
       }
       answerRepository.saveAllAndFlush(question.getAnswers());
     }
-    //return quizMapper.entityToDto(quizRepository.saveAndFlush(quizMapper.dtoToEntity(quiz)));
-    return null;
+    return quizMapper.entityToDto(quizRepository.saveAndFlush(quizMapper.dtoToEntity(quiz)));
+
   }
 
 
