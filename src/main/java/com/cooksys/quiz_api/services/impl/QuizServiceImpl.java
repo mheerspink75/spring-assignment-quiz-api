@@ -53,7 +53,7 @@ public class QuizServiceImpl implements QuizService {
     }
     quizRepository.saveAndFlush(quizMapper.dtoToEntity(quiz));
     if (quiz.name == null) {
-      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
     return new ResponseEntity<>(quizMapper.entityToDto(quizMapper.dtoToEntity(quiz)), HttpStatus.OK);
   }
